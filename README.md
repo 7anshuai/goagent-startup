@@ -1,7 +1,7 @@
 goagent-startup
 ============
 
-Startup script for Linux-based systems for running goagent when rebooting from /etc/init.d script.
+Startup script for running goagent when rebooting from /etc/init.d script.
 
 Why goagent-startup?
 ----
