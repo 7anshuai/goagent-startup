@@ -1,0 +1,70 @@
+#!/bin/sh
+# description: goagent-startup is the script for starting goagent on boot.
+
+GOAGENT_DIR='/home/ts/goagent-goagent-fd5235f';
+PID_FILE=$GOAGENT_DIR/goagent.pid
+LOG_FILE=$GOAGENT_DIR/goagent.log
+PYTHON_EXEC=`which python`
+
+start_goagent (){
+    if [ -f $PID_FILE ]
+    then
+        echo "$PID_FILE exists, process is already running or crashed"
+        exit 1
+    else
+        echo "Starting Goagent..."
+        $PYTHON_EXEC $GOAGENT_DIR/local/proxy.py  1>$LOG_FILE 2>&1 &
+        echo $! > $PID_FILE;
+    fi
+}
+
+stop_goagent (){
+    if [ ! -f $PID_FILE ]
+    then
+        echo "$PID_FILE does not exist, process is not running"
+        exit 1
+    else
+        echo "Stopping $GOAGENT_DIR/local/proxy.py ..."
+        echo "Killing `cat $PID_FILE`"
+        kill `cat $PID_FILE`;
+        rm -f $PID_FILE;
+        echo "Goagent stopped"
+    fi
+}
+
+case "$1" in
+    start)
+        start_goagent
+    ;;
+
+    stop)
+        stop_goagent
+    ;;
+
+    restart)
+        stop_goagent
+        start_goagent
+    ;;
+
+    status)
+        if [ -f $PID_FILE ]
+        then
+            PID=`cat $PID_FILE`
+            if [ -z "`ps ef | awk '{print $1}' | grep "^$PID$"`" ]
+            then
+                echo "Goagent stopped but pid file exists"
+            else
+                echo "Goagent running with pid $PID"
+
+            fi
+        else
+            echo "Goagent stopped"
+        fi
+    ;;
+
+    *)
+        echo "Usage: $0 {start|stop|restart|status}"
+        exit 1
+    ;;
+esac
+
