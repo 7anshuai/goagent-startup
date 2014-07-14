@@ -1,7 +1,7 @@
 goagent-startup
 ============
 
-Startup script for running goagent when rebooting from /etc/init.d script.
+An /etc/init.d script for running goagent, inspired from [node-startup](http://github.com/chovy/node-startup).
 
 Why goagent-startup?
 ----
@@ -21,13 +21,13 @@ Edit the goagent script with your settings for python path, path to application 
 
 	vi goagent
 
-	GOAGENT_DIR='/home/ts/goagent-goagent-fd5235f'
+	GOAGENT_DIR='/path/to/goagent-goagent-fd5235f'
 	PID_FILE=$GOAGENT_DIR/goagent.pid
 	LOG_FILE=$GOAGENT_DIR/goagent.log
 	PYTHON_EXEC=`which python`
 
-By default, it expects the pid file to be in /home/example/goagent-goagent-fd5235f/goagent.pid and your log file to be in /home/example/goagent-goagent-fd5235f/goagent.log
-	
+By default, it expects the pid file to be in /path/to/goagent-goagent-fd5235f/goagent.pid and your log file to be in /path/to/goagent-goagent-fd5235f/goagent.log
+
 Copy the startup script goagent to your /etc/init.d directory
 
 	sudo bash -l
@@ -36,10 +36,10 @@ Copy the startup script goagent to your /etc/init.d directory
 
 Test that it all works:
 
-	/etc/init.d/goagent start
-	/etc/init.d/goagent status
-	/etc/init.d/goagent restart
-	/etc/init.d/goagent stop
+	service goagent start
+	service goagent status
+	service goagent restart
+	service goagent stop
 
 Add goagent to the default runlevels
 
@@ -59,4 +59,3 @@ LICENSE
 ----
 
 (The MIT License)
-
