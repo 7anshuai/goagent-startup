@@ -10,12 +10,12 @@
 # Description: An /etc/init.d script for running goagent.
 ### END INIT INFO
 
-GOAGENT_DIR='/home/ts/goagent-goagent-fd5235f';
+GOAGENT_DIR='/path/to/goagent-goagent-fd5235f';
 PID_FILE=$GOAGENT_DIR/goagent.pid
 LOG_FILE=$GOAGENT_DIR/goagent.log
 PYTHON_EXEC=`which python`
 
-start_goagent (){
+start (){
     if [ -f $PID_FILE ]
     then
         echo "$PID_FILE exists, process is already running or crashed"
@@ -27,7 +27,7 @@ start_goagent (){
     fi
 }
 
-stop_goagent (){
+stop (){
     if [ ! -f $PID_FILE ]
     then
         echo "$PID_FILE does not exist, process is not running"
@@ -43,16 +43,16 @@ stop_goagent (){
 
 case "$1" in
     start)
-        start_goagent
+        start
     ;;
 
     stop)
-        stop_goagent
+        stop
     ;;
 
     restart)
-        stop_goagent
-        start_goagent
+        stop
+        start
     ;;
 
     status)
