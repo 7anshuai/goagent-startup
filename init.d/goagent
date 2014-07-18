@@ -1,5 +1,9 @@
 #!/bin/sh
 
+# REDHAT chkconfig header
+# chkconfig: - 58 74
+# description: goagent is the script for starting a goagent on boot.
+
 ### BEGIN INIT INFO
 # Provides: goagent
 # Required-Start:    $network $remote_fs $local_fs
@@ -76,4 +80,3 @@ case "$1" in
         exit 1
     ;;
 esac
-
