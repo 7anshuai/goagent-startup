@@ -1,7 +1,7 @@
 goagent-startup
 ============
 
-An /etc/init.d script for running goagent, inspired from [node-startup](http://github.com/chovy/node-startup).
+An /etc/init.d script for running goagent, inspired by [node-startup](http://github.com/chovy/node-startup).
 
 Why goagent-startup?
 ----
@@ -15,11 +15,11 @@ Installation
 Clone the repo
 
 	git clone https://github.com/ethrea1/goagent-startup.git
-	cd goagent-startup/init.d
+	cd goagent-startup
 
 Edit the goagent script with your settings for python path, path to application directory (where your goagent source is), and a path to a pid file.
 
-	vi goagent
+	vim init.d/goagent
 
 	GOAGENT_DIR='/path/to/goagent-goagent-fd5235f'
 	PID_FILE=$GOAGENT_DIR/goagent.pid
@@ -45,7 +45,7 @@ Add goagent to the default runlevels
 
 	update-rc.d goagent defaults
 
-Finally, reboot to be sure app starts automatically
+Finally, reboot to be sure goagent starts automatically
 
 	reboot
 
